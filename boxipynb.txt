@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+data=pd.read_csv('./ToyotaCorolla.csv')
+
+# Replace non-numeric values with NaN
+data["Age"] = pd.to_numeric(data["Age"], errors='coerce')
+data["HP"] = pd.to_numeric(data["HP"], errors='coerce')
+data["KM"] = pd.to_numeric(data["KM"], errors='coerce')
+
+# Drop rows with NaN values
+data = data.dropna()
+
+plt.boxplot([data["Price"].values, data["HP"].values, data["KM"].values, data["Age"].values, data["CC"].values, data["Weight"].values])
+
+plt.xticks([1,2,3,4,5,6],["Price","HP","KM","Age","CC","Weight"])
+
+plt.show()
